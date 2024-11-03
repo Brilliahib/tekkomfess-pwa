@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TriangleAlert } from "lucide-react";
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -60,8 +61,15 @@ const LoginPage = () => {
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">Login</h1>
           <p className="text-[#737373]">Please login with your account</p>
-          {error && <p className="text-red-500 text-left">{error}</p>}
         </div>
+        {error && (
+          <div className="border border-red-600 bg-red-300/20 px-4 py-4 flex items-center gap-2 rounded-md">
+            <TriangleAlert className="h-5 w-5 text-red-600" />
+            <div className="space-y-2">
+              <p className="text-red-600 text-left text-sm">{error}</p>
+            </div>
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-5">
           <input
             type="email"

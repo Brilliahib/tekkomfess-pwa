@@ -5,14 +5,14 @@ import { useAuth } from "../../../context/AuthContext";
 
 const ProtectedRoute = ({ element }) => {
   const { user } = useAuth();
-  console.log("User in ProtectedRoute:", user); // Log user untuk debugging
+  console.log("User in ProtectedRoute:", user);
 
   if (!user) {
-    console.log("Redirecting to login"); // Log untuk memahami alur
+    console.log("Redirecting to login");
     return <Navigate to="/login" />;
   }
 
-  return element; // Kembalikan elemen jika user ada
+  return element;
 };
 
 export default ProtectedRoute;
