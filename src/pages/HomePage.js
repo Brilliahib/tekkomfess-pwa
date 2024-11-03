@@ -14,8 +14,25 @@ export default function HomePage() {
           "https://api-tekkomfess.vercel.app/api/menfess"
         );
         setData(response.data.data);
+        const cache = await caches.open("api-cache");
+        cache.put(
+          "https://api-tekkomfess.vercel.app/api/menfess",
+          new Response(JSON.stringify(response.data.data))
+        );
       } catch (error) {
         console.error("Error fetching data: ", error);
+        fetchDataFromCache();
+      }
+    };
+
+    const fetchDataFromCache = async () => {
+      const cache = await caches.open("api-cache");
+      const cachedResponse = await cache.match(
+        "https://api-tekkomfess.vercel.app/api/menfess"
+      );
+      if (cachedResponse) {
+        const jsonData = await cachedResponse.json();
+        setData(jsonData);
       }
     };
 
