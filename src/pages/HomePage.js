@@ -26,8 +26,8 @@ export default function HomePage() {
     <div className="min-h-[90vh] px-5">
       <div className="pt-7 rounded-b-xl flex justify-between md:mb-8 mb-6">
         <div>
-          <p className="text-sm">Welcome,</p>
-          <p className="font-semibold">Muhammad Ahib Ibrilli</p>
+          <p className="text-sm">Welcome to,</p>
+          <p className="font-semibold">Tekkom Menfess</p>
         </div>
         <div>
           <div className="rounded-full p-2 bg-[#0288d1]/20">
