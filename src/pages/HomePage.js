@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/atoms/card/CardMenfess";
 import { Bell, TriangleAlert } from "lucide-react";
+import SkeletonCardMenfess from "../components/atoms/card/SkeletonCardMenfess";
 
 export default function HomePage() {
   const [data, setData] = useState([]);
@@ -22,7 +23,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen px-5">
+    <div className="min-h-[90vh] px-5">
       <div className="pt-7 rounded-b-xl flex justify-between md:mb-8 mb-6">
         <div>
           <p className="text-sm">Welcome,</p>
@@ -54,7 +55,11 @@ export default function HomePage() {
             {data.length > 0 ? (
               data.map((item) => <Card key={item.id} item={item} />)
             ) : (
-              <p>Loading...</p>
+              <>
+                <SkeletonCardMenfess />
+                <SkeletonCardMenfess />
+                <SkeletonCardMenfess />
+              </>
             )}
           </div>
         </div>
