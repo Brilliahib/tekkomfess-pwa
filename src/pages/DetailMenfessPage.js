@@ -59,10 +59,8 @@ const DetailPage = () => {
         }
       );
 
-      // Setelah komentar berhasil dikirim, panggil fetchDetail untuk memuat ulang data
       await fetchDetail();
 
-      // Reset comment input
       setComment("");
       setNoComments(false);
     } catch (error) {
@@ -159,20 +157,26 @@ const DetailPage = () => {
         </div>
       </div>
       <div className="z-50 flex justify-around items-center max-w-[430px] border-t-[1px] fixed bottom-16 pb-2 pt-6 w-full px-5 bg-white rounded-lg">
-        <form
-          onSubmit={handleCommentSubmit}
-          className="w-full flex items-center gap-2"
-        >
-          <input
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Write a comment..."
-            className="px-4 py-2 border border-gray-300 rounded-full text-sm w-full focus:outline-none focus:border-[#0288d1]"
-          />
-          <button type="submit" className="bg-transparent">
-            <SendHorizonal />
-          </button>
-        </form>
+        {!token ? (
+          <div className="px-4 py-2 border border-gray-300 rounded-full text-sm w-full text-center text-[#737373]">
+            <p>Please login first to comment</p>
+          </div>
+        ) : (
+          <form
+            onSubmit={handleCommentSubmit}
+            className="w-full flex items-center gap-2"
+          >
+            <input
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Write a comment..."
+              className="px-4 py-2 border border-gray-300 rounded-full text-sm w-full focus:outline-none focus:border-[#0288d1]"
+            />
+            <button type="submit" className="bg-transparent">
+              <SendHorizonal />
+            </button>
+          </form>
+        )}
       </div>
     </>
   );

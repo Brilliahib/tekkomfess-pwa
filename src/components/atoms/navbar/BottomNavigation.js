@@ -14,7 +14,9 @@ export default function BottomNavigation() {
         </a>
         <a
           href="/menfess"
-          className={location.pathname === "/menfess" ? "text-[#0288d1]" : ""}
+          className={
+            location.pathname.startsWith("/menfess") ? "text-[#0288d1]" : ""
+          }
         >
           <MessageCircleMore />
         </a>
