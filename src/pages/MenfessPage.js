@@ -9,25 +9,11 @@ export default function MenfessPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const cache = await caches.open("api-cache");
-      const cachedResponse = await cache.match(
-        "https://api-tekkomfess.vercel.app/api/menfess"
-      );
-
-      if (cachedResponse) {
-        const jsonData = await cachedResponse.json();
-        setData(jsonData);
-      }
-
       try {
         const response = await axios.get(
           "https://api-tekkomfess.vercel.app/api/menfess"
         );
         setData(response.data.data);
-        cache.put(
-          "https://api-tekkomfess.vercel.app/api/menfess",
-          new Response(JSON.stringify(response.data.data))
-        );
       } catch (error) {
         console.error("Error fetching data: ", error);
       }

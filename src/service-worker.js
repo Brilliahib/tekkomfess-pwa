@@ -30,16 +30,16 @@ registerRoute(({ request, url }) => {
   return true;
 }, createHandlerBoundToURL(process.env.PUBLIC_URL + "/index.html"));
 
-// Caching API responses
-registerRoute(
-  ({ url }) => url.origin === "https://api-tekkomfess.vercel.app", // Ganti dengan domain API yang kamu gunakan
-  new StaleWhileRevalidate({
-    cacheName: "api-cache",
-    plugins: [
-      new ExpirationPlugin({ maxEntries: 50 }), // Aturan penghapusan untuk cache
-    ],
-  })
-);
+// // Caching API responses
+// registerRoute(
+//   ({ url }) => url.origin === "https://api-tekkomfess.vercel.app", // Ganti dengan domain API yang kamu gunakan
+//   new StaleWhileRevalidate({
+//     cacheName: "api-cache",
+//     plugins: [
+//       new ExpirationPlugin({ maxEntries: 50 }), // Aturan penghapusan untuk cache
+//     ],
+//   })
+// );
 
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})

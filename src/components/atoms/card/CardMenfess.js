@@ -1,8 +1,11 @@
 import React from "react";
 import { formatDistanceToNowStrict, parseISO, format } from "date-fns";
 import { generateFallbackFromName } from "../../../utils/misc";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ item }) => {
+  const navigate = useNavigate();
+
   const formatDate = (dateString) => {
     const date = parseISO(dateString);
     const now = new Date();
@@ -18,8 +21,15 @@ const Card = ({ item }) => {
     return format(date, "dd/MM/yyyy");
   };
 
+  const handleClick = () => {
+    navigate(`/menfess/${item.id}`);
+  };
+
   return (
-    <div className="bg-white shadow rounded-lg p-4 mb-4 text-left space-y-2">
+    <div
+      className="bg-white shadow rounded-lg p-4 mb-4 text-left space-y-2 cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">

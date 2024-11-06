@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/molecules/guard/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DetailPage from "./pages/DetailMenfessPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/menfess" element={<MenfessPage />} />
+            <Route path="/menfess/:id" element={<DetailPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route
               path="/account"

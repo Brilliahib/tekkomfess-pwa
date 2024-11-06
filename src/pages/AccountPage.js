@@ -33,7 +33,7 @@ export default function AccountPage() {
         </div>
         <button
           onClick={handleLogout}
-          className="mt-4 flex gap-2 items-center px-6 py-2 text-red-500 bg-white border border-red-500 hover:bg-red-500 hover:text-white text-white rounded-md transition text-sm"
+          className="mt-4 flex gap-2 items-center px-6 py-2 text-red-700 bg-white border border-red-500 hover:bg-red-500 hover:text-white text-white rounded-md transition text-sm"
         >
           <LogOut className="h-4 w-4" />
           Logout
