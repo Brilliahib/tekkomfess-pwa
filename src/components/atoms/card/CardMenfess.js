@@ -48,7 +48,11 @@ const Card = ({ item }) => {
       <div>
         <p className="text-sm">{item.message}</p>
         {item.images && item.images.length > 0 && (
-          <img src={item.images[0]} alt="post image" className="mt-2 rounded" />
+          <img
+            src={item.images[0]}
+            alt="post image"
+            className="mt-2 rounded-xl"
+          />
         )}
       </div>
     </div>

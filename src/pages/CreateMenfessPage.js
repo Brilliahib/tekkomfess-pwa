@@ -8,7 +8,7 @@ export default function CreateMenfessPage() {
   const [message, setMessage] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { token } = useAuth(); // Pastikan token diambil dengan benar
+  const { token } = useAuth();
 
   const handleCreateMenfess = async (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ export default function CreateMenfessPage() {
       const formData = new FormData();
       formData.append("message", message);
       if (image) {
-        formData.append("image", image);
+        formData.append("images", image);
       }
 
       const response = await axios.post(
