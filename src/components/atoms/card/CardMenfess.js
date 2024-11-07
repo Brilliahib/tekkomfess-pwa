@@ -2,6 +2,7 @@ import React from "react";
 import { formatDistanceToNowStrict, parseISO, format } from "date-fns";
 import { generateFallbackFromName } from "../../../utils/misc";
 import { useNavigate } from "react-router-dom";
+import { MessageCircle } from "lucide-react";
 
 const Card = ({ item }) => {
   const navigate = useNavigate();
@@ -55,6 +56,10 @@ const Card = ({ item }) => {
                   className="mt-2 rounded-xl"
                 />
               )}
+            </div>
+            <div className="flex items-center gap-1 text-sm text-gray-500 mt-3">
+              <MessageCircle className="w-4 h-4" />
+              <span>{item.comments.length}</span>
             </div>
           </div>
         </div>
