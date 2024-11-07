@@ -1,4 +1,4 @@
-import { Home, MessageCircleMore, User } from "lucide-react";
+import { Home, Plus, User } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 export default function BottomNavigation() {
@@ -13,12 +13,14 @@ export default function BottomNavigation() {
           <Home />
         </a>
         <a
-          href="/menfess"
-          className={
-            location.pathname.startsWith("/menfess") ? "text-[#0288d1]" : ""
-          }
+          href="/menfess/create"
+          className={`bg-[#f5f5f5] p-2 rounded-xl ${
+            location.pathname.startsWith("/menfess/create")
+              ? "text-[#0288d1]"
+              : ""
+          }`}
         >
-          <MessageCircleMore />
+          <Plus />
         </a>
         <a
           href="/account"

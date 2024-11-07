@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import BottomNavigation from "./components/atoms/navbar/BottomNavigation";
-import MenfessPage from "./pages/MenfessPage";
+
 import AccountPage from "./pages/AccountPage";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/molecules/guard/ProtectedRoute";
@@ -11,6 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DetailPage from "./pages/DetailMenfessPage";
+import CreateMenfessPage from "./pages/CreateMenfessPage";
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
           <BottomNavigation />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/menfess" element={<MenfessPage />} />
+            <Route
+              path="/menfess/create"
+              element={<ProtectedRoute element={<CreateMenfessPage />} />}
+            />
             <Route path="/menfess/:id" element={<DetailPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route
