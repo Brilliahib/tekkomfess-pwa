@@ -31,29 +31,33 @@ const Card = ({ item }) => {
       onClick={handleClick}
     >
       <div className="flex justify-between items-center">
-        <div className="flex items-center gap-2">
+        <div className="flex gap-4">
           <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">
-            <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm">
+            <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm font-semibold">
               {generateFallbackFromName(item.user.fullname)}
             </div>
           </div>
-          <h1 className="text-sm">{item.user.fullname}</h1>
+          <div>
+            <div className="flex gap-2 items-center">
+              <h1 className="text-sm font-semibold">{item.user.fullname}</h1>
+              <div>
+                <p className="text-xs text-[#737373]">
+                  {formatDate(item.created_at)}
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm">{item.message}</p>
+              {item.images && item.images.length > 0 && (
+                <img
+                  src={item.images[0]}
+                  alt="post image"
+                  className="mt-2 rounded-xl"
+                />
+              )}
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="text-sm text-[#737373]">
-            {formatDate(item.created_at)}
-          </p>
-        </div>
-      </div>
-      <div>
-        <p className="text-sm">{item.message}</p>
-        {item.images && item.images.length > 0 && (
-          <img
-            src={item.images[0]}
-            alt="post image"
-            className="mt-2 rounded-xl"
-          />
-        )}
       </div>
     </div>
   );

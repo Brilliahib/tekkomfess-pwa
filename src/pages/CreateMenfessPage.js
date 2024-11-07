@@ -1,15 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import HeaderTitle from "../components/atoms/typography/HeaderTitle";
 import { useAuth } from "../context/AuthContext";
+import TopNavigation from "../components/atoms/navbar/TopNavigation";
+import { generateFallbackFromName } from "../utils/misc";
+import { ImagePlus } from "lucide-react"; // Import icon dari lucide-react
 
 export default function CreateMenfessPage() {
   const [message, setMessage] = useState("");
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { token } = useAuth();
+  const { token, user } = useAuth();
 
   const handleCreateMenfess = async (e) => {
     e.preventDefault();
@@ -57,23 +59,38 @@ export default function CreateMenfessPage() {
 
   return (
     <div className="px-5 min-h-[80vh]">
-      <HeaderTitle title="Create Menfess" />
-
+      <TopNavigation title="New Menfess" />
       <form onSubmit={handleCreateMenfess} className="space-y-4 mb-6">
+        <div className="flex items-center gap-2">
+          <div className="relative flex h-12 w-12 shrink-0 overflow-hidden rounded-full">
+            <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 font-bold">
+              {generateFallbackFromName(user.fullname)}
+            </div>
+          </div>
+          <h1 className="font-semibold text-sm">{user.fullname}</h1>
+        </div>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Write your message here"
+          placeholder="What's new?"
           required
           className="px-4 py-2 border border-gray-300 p-2 rounded-md text-sm w-full focus:outline-none focus:border-[#0288d1]"
         />
 
-        <input
-          type="file"
-          onChange={handleImageChange}
-          accept="image/*"
-          className="w-full p-2 border rounded-md"
-        />
+        <label
+          htmlFor="file-upload"
+          className="flex items-center gap-2 cursor-pointer"
+        >
+          <ImagePlus size={20} />
+          <input
+            id="file-upload"
+            type="file"
+            onChange={handleImageChange}
+            accept="image/*"
+            className="hidden"
+          />
+          <span className="text-sm text-[#737373]">Upload an image</span>
+        </label>
 
         {preview && (
           <div className="mt-4">
@@ -89,7 +106,7 @@ export default function CreateMenfessPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`px-4 py-2 text-sm text-white rounded-md ${
+            className={`px-4 py-2 text-sm text-white rounded-md font-semibold ${
               loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#0288d1]"
             }`}
           >
