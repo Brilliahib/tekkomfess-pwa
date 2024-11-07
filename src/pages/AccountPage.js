@@ -14,10 +14,7 @@ export default function AccountPage() {
   return (
     <>
       <div className="px-5">
-        <HeaderTitle
-          title="Account"
-          subtitle="Access your account details in here"
-        />
+        <HeaderTitle title="Account" />
         <div className="space-y-4">
           <div className="flex items-center gap-4">
             <div className="relative flex h-24 w-24 shrink-0 overflow-hidden rounded-full">
@@ -33,7 +30,7 @@ export default function AccountPage() {
         </div>
         <button
           onClick={handleLogout}
-          className="mt-4 flex gap-2 items-center px-6 py-2 text-red-500 bg-white border border-red-500 text-white rounded-md transition text-sm"
+          className="mt-4 flex gap-2 items-center px-6 py-2 text-red-600 bg-white border border-red-600 hover:bg-red-600 hover:text-white rounded-md transition text-sm"
         >
           <LogOut className="h-4 w-4" />
           Logout

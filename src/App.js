@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DetailPage from "./pages/DetailMenfessPage";
 import CreateMenfessPage from "./pages/CreateMenfessPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             />
             <Route path="/menfess/:id" element={<DetailPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route
               path="/account"
               element={<ProtectedRoute element={<AccountPage />} />}

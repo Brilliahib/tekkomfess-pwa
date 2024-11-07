@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext";
 export default function CreateMenfessPage() {
   const [message, setMessage] = useState("");
   const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
 
@@ -21,18 +22,20 @@ export default function CreateMenfessPage() {
         formData.append("images", image);
       }
 
-      const response = await axios.post(
+      await axios.post(
         "https://api-tekkomfess.vercel.app/api/menfess",
         formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       setMessage("");
       setImage(null);
+      setPreview(null);
       toast.success("Menfess created successfully!", {
         autoClose: 5000,
       });
@@ -46,12 +49,15 @@ export default function CreateMenfessPage() {
     }
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
+  };
+
   return (
     <div className="px-5 min-h-[80vh]">
-      <HeaderTitle
-        title="Create Menfess"
-        subtitle="Share unique stories in here"
-      />
+      <HeaderTitle title="Create Menfess" />
 
       <form onSubmit={handleCreateMenfess} className="space-y-4 mb-6">
         <textarea
@@ -61,19 +67,35 @@ export default function CreateMenfessPage() {
           required
           className="px-4 py-2 border border-gray-300 p-2 rounded-md text-sm w-full focus:outline-none focus:border-[#0288d1]"
         />
+
         <input
           type="file"
-          onChange={(e) => setImage(e.target.files[0])}
+          onChange={handleImageChange}
           accept="image/*"
           className="w-full p-2 border rounded-md"
         />
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-4 py-2 bg-[#0288d1] text-sm text-white rounded-md"
-        >
-          {loading ? "Creating..." : "Create Menfess"}
-        </button>
+
+        {preview && (
+          <div className="mt-4">
+            <img
+              src={preview}
+              alt="Image Preview"
+              className="mt-2 rounded-md max-h-48 object-cover"
+            />
+          </div>
+        )}
+
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            disabled={loading}
+            className={`px-4 py-2 text-sm text-white rounded-md ${
+              loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#0288d1]"
+            }`}
+          >
+            {loading ? "Creating..." : "Create"}
+          </button>
+        </div>
       </form>
     </div>
   );
