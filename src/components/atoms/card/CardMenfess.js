@@ -27,7 +27,7 @@ const Card = ({ item }) => {
 
   return (
     <div
-      className="bg-white shadow rounded-lg p-4 mb-4 text-left space-y-2 cursor-pointer"
+      className="bg-white text-left space-y-2 cursor-pointer"
       onClick={handleClick}
     >
       <div className="flex justify-between items-center">

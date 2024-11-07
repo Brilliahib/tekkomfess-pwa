@@ -13,6 +13,7 @@ import {
   parseISO,
 } from "date-fns";
 import { SendHorizonal } from "lucide-react";
+import TopNavigation from "../components/atoms/navbar/TopNavigation";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -97,10 +98,7 @@ const DetailPage = () => {
   return (
     <>
       <div className="px-5 min-h-[80vh]">
-        <HeaderTitle
-          title="Detail Menfess"
-          subtitle="Find unique stories in here"
-        />
+        <TopNavigation title="Menfess" />
         <div>
           {loading ? (
             <SkeletonCardMenfess />
@@ -113,42 +111,41 @@ const DetailPage = () => {
 
         <div className="mt-5 md:space-y-4 space-y-2">
           <h3 className="font-semibold">Replies</h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {noComments ? (
               <p className="text-[#737373] text-sm">
                 No comments yet. Be the first to comment!
               </p>
             ) : (
               comments.map((comment, index) => (
-                <div
-                  className="bg-white shadow rounded-lg p-4 mb-4 text-left space-y-2"
-                  key={index}
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">
-                        <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm">
-                          {comment.userInfo
-                            ? generateFallbackFromName(
-                                comment.userInfo.fullname
-                              )
-                            : "Unknown User"}
+                <div className="py-4 border-t-[1px]">
+                  <div className="bg-white text-left space-y-2" key={index}>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">
+                          <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm">
+                            {comment.userInfo
+                              ? generateFallbackFromName(
+                                  comment.userInfo.fullname
+                                )
+                              : "Unknown User"}
+                          </div>
                         </div>
+                        <h1 className="text-sm">
+                          {comment.userInfo
+                            ? comment.userInfo.fullname
+                            : "Unknown User"}
+                        </h1>
                       </div>
-                      <h1 className="text-sm">
-                        {comment.userInfo
-                          ? comment.userInfo.fullname
-                          : "Unknown User"}
-                      </h1>
+                      <div>
+                        <p className="text-sm text-[#737373]">
+                          {formatDate(comment.created_at)}
+                        </p>
+                      </div>
                     </div>
                     <div>
-                      <p className="text-sm text-[#737373]">
-                        {formatDate(comment.created_at)}
-                      </p>
+                      <p className="text-sm">{comment.comment}</p>
                     </div>
-                  </div>
-                  <div>
-                    <p className="text-sm">{comment.comment}</p>
                   </div>
                 </div>
               ))

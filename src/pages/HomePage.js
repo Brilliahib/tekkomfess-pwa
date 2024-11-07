@@ -51,9 +51,15 @@ export default function HomePage() {
         </div>
         <div className="space-y-4">
           <h1 className="font-semibold">Recently Menfess</h1>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {data.length > 0 ? (
-              data.map((item) => <Card key={item.id} item={item} />)
+              data.map((item) => (
+                <>
+                  <div className="py-4 border-t-[1px]">
+                    <Card key={item.id} item={item} />
+                  </div>
+                </>
+              ))
             ) : (
               <>
                 <SkeletonCardMenfess />
