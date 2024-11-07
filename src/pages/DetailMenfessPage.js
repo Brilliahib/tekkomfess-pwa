@@ -118,35 +118,33 @@ const DetailPage = () => {
           {loading ? (
             <SkeletonCardMenfess />
           ) : data ? (
-            <div className="py-4 border-t-[1px]">
-              <div className="bg-white text-left space-y-2" key={data.id}>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">
-                      <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm font-semibold">
-                        {generateFallbackFromName(data.user.fullname)}
-                      </div>
+            <div className="bg-white text-left space-y-2" key={data.id}>
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">
+                    <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm font-semibold">
+                      {generateFallbackFromName(data.user.fullname)}
                     </div>
-                    <h1 className="text-sm font-semibold">
-                      {data.user.fullname}
-                    </h1>
                   </div>
-                  <div>
-                    <p className="text-sm text-[#737373]">
-                      {formatDates(data.created_at)}
-                    </p>
-                  </div>
+                  <h1 className="text-sm font-semibold">
+                    {data.user.fullname}
+                  </h1>
                 </div>
                 <div>
-                  <p className="text-sm">{data.message}</p>
-                  {data.images && data.images.length > 0 && (
-                    <img
-                      src={data.images[0]}
-                      alt="post image"
-                      className="mt-2 rounded-xl"
-                    />
-                  )}
+                  <p className="text-sm text-[#737373]">
+                    {formatDates(data.created_at)}
+                  </p>
                 </div>
+              </div>
+              <div>
+                <p className="text-sm">{data.message}</p>
+                {data.images && data.images.length > 0 && (
+                  <img
+                    src={data.images[0]}
+                    alt="post image"
+                    className="mt-2 rounded-xl"
+                  />
+                )}
               </div>
             </div>
           ) : (
