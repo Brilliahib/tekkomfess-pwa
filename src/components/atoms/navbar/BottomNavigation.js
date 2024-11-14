@@ -1,4 +1,4 @@
-import { Home, Plus, User } from "lucide-react";
+import { Handshake, Home, Plus, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function BottomNavigation() {
@@ -21,6 +21,14 @@ export default function BottomNavigation() {
           }`}
         >
           <Plus />
+        </Link>
+        <Link
+          to="/users"
+          className={`${
+            location.pathname.startsWith("/users") ? "text-[#0288d1]" : ""
+          }`}
+        >
+          <Handshake />
         </Link>
         <Link
           to="/account"
