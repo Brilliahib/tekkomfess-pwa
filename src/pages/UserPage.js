@@ -3,6 +3,7 @@ import axios from "axios";
 import HeaderTitle from "../components/atoms/typography/HeaderTitle";
 import { generateFallbackFromName } from "../utils/misc";
 import SkeletonCardUser from "../components/atoms/card/SkeletonCardUser";
+import { Link } from "react-router-dom";
 
 export default function UserPage() {
   const [users, setUsers] = useState([]);
@@ -38,18 +39,26 @@ export default function UserPage() {
             </>
           ) : users.length > 0 ? (
             users.map((user) => (
-              <div key={user.id} className="p-4 rounded-md shadow">
-                <div className="flex gap-4 h-full items-center">
-                  <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">
-                    <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm font-semibold">
-                      {generateFallbackFromName(user.fullname)}
+              <div>
+                <Link
+                  key={user.id}
+                  to={`/users/${user.id}`}
+                  className="space-y-4"
+                >
+                  <div className="p-4 rounded-md shadow">
+                    <div className="flex gap-4 h-full items-center">
+                      <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-muted">
+                        <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f5f5f5] text-gray-700 text-sm font-semibold">
+                          {generateFallbackFromName(user.fullname)}
+                        </div>
+                      </div>
+                      <div className="text-sm space-y-1">
+                        <h2 className="font-bold text-sm">{user.fullname}</h2>
+                        <p className="text-xs text-[#737373]">{user.email}</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="text-sm space-y-1">
-                    <h2 className="font-bold text-sm">{user.fullname}</h2>
-                    <p className="text-xs text-[#737373]">{user.email}</p>
-                  </div>
-                </div>
+                </Link>
               </div>
             ))
           ) : (

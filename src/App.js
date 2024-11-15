@@ -14,6 +14,7 @@ import DetailPage from "./pages/DetailMenfessPage";
 import CreateMenfessPage from "./pages/CreateMenfessPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserPage from "./pages/UserPage";
+import DetailUserPage from "./pages/DetailUserPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/menfess/:id" element={<DetailPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/users" element={<UserPage />} />
+            <Route path="/users/:id" element={<DetailUserPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route
               path="/account"
